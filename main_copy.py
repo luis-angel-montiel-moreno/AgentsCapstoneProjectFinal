@@ -49,20 +49,6 @@ retry_configuration = types.HttpRetryOptions(
     http_status_codes = [429, 500, 502, 503, 504]
 )
 
-# Activate Vertex AI API / Cloud Storage API
-# Vertex AI > Agent Builder >
-# Default Parser
-# RAG Managed Vector Store
-# Google Managed Encryption Key
-# Regions allowed: us-central1
-# https://cloud.google.com/vertex-ai/generative-ai/docs/rag-engine/rag-overview#supported-regions
-
-
-# Vertex AI Search> Create New Search App> Custom Search
-# Activate API
-
-
-###############################################################3
 
 # Currently supports Google first-party embedding models
 # fmt: off
@@ -104,7 +90,7 @@ rag_retrieval_tool = Retrieval(
 print("RAG tool created successfully.")
 ###############################################################
 config_with_rag = GenerateContentConfig(
-    tools=[rag_retrieval_tool] # Aquí inyectas el objeto Retrieval
+    tools=[rag_retrieval_tool] # Retrieval Object injected here
 )
 
 # Parallel reviewers
@@ -240,13 +226,24 @@ async def run_feedback_system():
     response = await runner.run_debug(
         TASK_PROMPT
     )
-    
-    final_aggregator_response = response[-1]
-    # RECORD AND SHOW FINAL REPORT
-    all_outputs = response[0].output_dict
+    print("******RESPONSE*******\n", response, "******RESPONSE*******\n")
+    # Extract final_feedback values from elements where state_delta contains 'final_feedback'
+    final_feedback_values = []
+    for event in response:
+        if (hasattr(event, 'actions') and 
+            event.actions is not None and 
+            hasattr(event.actions, 'state_delta') and 
+            event.actions.state_delta is not None and 
+            isinstance(event.actions.state_delta, dict) and 
+            'final_feedback' in event.actions.state_delta):
+            final_feedback_values.append(event.actions.state_delta['final_feedback'])
 
-    final_report_text = final_aggregator_response.text
-    print("Success accesing outputs.")
+    print("Final report: ", final_feedback_values)
+    # Print the extracted values
+    print("Extracted final_feedback values:")
+    for i, value in enumerate(final_feedback_values, 1):
+        print(f"\n--- Final Feedback {i} ---")
+        print(value)
 
 #------------------------------------------------------------
 # CREATING CONSOLIDATED FEEDBACK
@@ -259,8 +256,8 @@ async def run_feedback_system():
         f.write("---")
         
         f.write("\n## I. Detailed feedback per criteria\n\n")
-        
-
+        f.write(final_feedback_values[0])
+        """
         feedback_keys = [
             "Presentation_feedback",
             "Mathematical_communication_feedback",
@@ -276,7 +273,7 @@ async def run_feedback_system():
             "Reflection_feedback": "D. Reflection",
             "Use_of_Mathematics_feedback": "E. Use of Mathematics",
         }
-        
+
         for key in feedback_keys:
             if key in all_outputs:
                 f.write(f"### Criteria {key_to_title[key]}\n\n")
@@ -289,11 +286,11 @@ async def run_feedback_system():
         f.write("\n## ✨ II. Final consolidated feedback\n\n")
         f.write(final_report_text.strip())
         f.write("\n")
-
+        """
     # -----------------------------------------------
     # MOSTRAR Y CONFIRMAR
     print(f"\n--- Final Feedback (Aggregator Agent) ---")
-    print(final_report_text) 
+    #print(final_report_text) 
     print(f"\n Complete report (individual and consolidated) saved in {consolidated_filename}")
 
 
