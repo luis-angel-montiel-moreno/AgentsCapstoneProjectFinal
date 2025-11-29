@@ -18,7 +18,9 @@ from google.genai.types import GenerateContentConfig, Retrieval, VertexRagStore
 import vertexai
 from google import genai
 from vertexai import rag
-
+from google.adk.plugins.logging_plugin import (
+    LoggingPlugin,
+)  # <---- 1. Import the Plugin
 
 logging.basicConfig(level=logging.DEBUG) 
 
@@ -28,7 +30,7 @@ print("ADK components imported successfully.")
 
 PROJECT_ID = "agents-capstone-project"
 
-DOCUMENT = r"C:\Users\steff\Agents Capstone Project\document.txt"
+DOCUMENT = r"document.txt"
 
 vertexai.init(project=PROJECT_ID, location="us-east1")
 client = genai.Client(vertexai=True, project=PROJECT_ID, location="us")
@@ -70,7 +72,7 @@ rag.list_corpora()
 
 rag_file = rag.upload_file(
     corpus_name=rag_corpus.name,
-    path=r"C:\Users\steff\Downloads\rubrics.pdf",
+    path=r"rubrics.pdf",
     display_name="test.md",
     description="my test file",
 )
@@ -203,7 +205,11 @@ print("Parallel and Sequential Agents created.")
 #Asynchronous function for runner
 async def run_feedback_system():
     # Runner definition
-    runner = InMemoryRunner(agent=root_agent)
+    runner = InMemoryRunner(agent=root_agent,
+    plugins=[
+        LoggingPlugin()
+    ],  # <---- 2. Add the)
+    )
     
     # Define input text (document to be analyzed)
     try:
