@@ -1,4 +1,10 @@
 ##### IMPORTS
+"""
+This script implements the "Solution" described in the Readme:
+An agentic system that helps professors to review students' work automatically.
+It addresses the "Problem" of time-consuming reviews by providing automated feedback,
+scores, and actionables ("Value").
+"""
 
 import os
 import asyncio
@@ -57,6 +63,9 @@ retry_configuration = types.HttpRetryOptions(
 EMBEDDING_MODEL = "publishers/google/models/text-embedding-005"  # @param {type:"string", isTemplate: true}
 # fmt: on
 
+# RAG Corpus Creation
+# Addresses the "Problem": "students... need to fulfill a robust rubric"
+# We ingest the rubric (rubrics.pdf) so the agents can evaluate against specific criteria.
 rag_corpus = rag.create_corpus(
     display_name="my-rag-corpus",
     backend_config=rag.RagVectorDbConfig(
@@ -96,6 +105,8 @@ config_with_rag = GenerateContentConfig(
 )
 
 # Parallel reviewers
+# Part of the "Solution": "uses agentic AI to provide a feedback to the professor"
+# Each agent focuses on one criterion of the rubric to provide detailed, specific feedback.
 
 # Agent focused on presentation
 # "You are a 'Criteria A' Presentation reviewer. Your task is to review the presentation and provide feedback. You must provide a score according to the rubric and justify your score. You must also provide 3 actionables that the student can take to improve their document presentation.".strip()
@@ -157,6 +168,9 @@ use_math_reviewer = Agent(
 
 print("Use of Mathematics reviewer created successfully.")
 
+# Aggregator Agent
+# Part of the "Solution": "provides a final score based on the rubric criteria and a summary final feedback report"
+# Consolidates individual agent feedback into a cohesive report.
 aggregator_agent = Agent(
     name = "AggregatorAgent",
     model = Gemini(model_name = "gemini-2.5-flash-lite", retry_options = retry_configuration),
@@ -253,7 +267,7 @@ async def run_feedback_system():
 
 #------------------------------------------------------------
 # CREATING CONSOLIDATED FEEDBACK
-    
+    # Delivers the "Value": "time saving solution... providing a final score and a summary final feedback report"
     consolidated_filename = "COMPLETE_FEEDBACK_REPORT.md"
     
     # Open file
