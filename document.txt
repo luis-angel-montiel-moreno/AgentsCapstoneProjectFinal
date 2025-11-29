@@ -1,0 +1,233 @@
+Breast cancer death rate in women
+Internal Assessment
+Mathematics Analysis and Approaches SL
+May 2026 Examination.
+
+Page count: 17
+Appendices attached in additional pages.
+
+1. Introduction
+
+According to (WHO, 2024), breast cancer is one of the leading causes of death among women worldwide. Although organizations such as (Susan G. Komen®, 2025) have worked on awareness and early detection, inequities in access to care and public education remain a major challenge. Recent research, such as (Kim et al., 2025), This study analyzes global patterns and trends in breast cancer incidence and mortality in women in 185 countries. In 2022, 2.3 million new cases and 670,000 deaths were reported, with mortality rates decreasing in highly developed countries. However, by 2050, cases are projected to increase by 38% and deaths by 68%, mainly affecting less developed countries. The study highlights the need to improve early diagnosis, access to treatment and data collection in low-income countries to reduce inequalities in breast cancer care.
+
+I chose this topic not only because of the global magnitude of breast cancer, but because I believe that mathematics can be a very good tool to understand and combat this disease. Although I have not had direct personal experience with breast cancer, I have seen how it affects entire families, leaving a profound impact on the lives of those who suffer from it and their loved ones. This reality prompted me to look for a way to contribute, using my skills in mathematics to analyze data and patterns that can help better understand the causes and factors that influence breast cancer mortality. This work focuses on studying and identifying patterns in age-adjusted breast cancer mortality rates in three selected countries: Austria, Romania and Italy. The objective is to use mathematical tools to discover trends and variations over time, in order to provide information that will improve the understanding of global health problems. It seeks to analyze how mortality rates have evolved, identify possible factors influencing these trends, compare the patterns observed in the three countries to highlight similarities and differences in their health systems and policies, and finally, provide data-driven recommendations that can inform public health strategies, such as improving early detection programs or optimizing the allocation of resources in health systems.
+
+This study reflects my personal interest in understanding and addressing global health issues through mathematics. Breast cancer mortality is a major challenge that requires the use of mathematics to analyze the situation. The collection of raw data on breast cancer mortality rates is necessary to identify patterns over time. By using data from reliable sources, ensuring the accuracy of the analysis is what will allow me to compare countries and see how health systems and public policies affect mortality rates. Mathematical analysis with functions is key to this study, as it will allow me to understand how mortality rates change.
+
+---
+
+2. Researching and organizing data
+
+The data I will use in this exploration were obtained from Our World in Data (Breast Cancer Death Rate In Women, 2024), a reliable source known for its rigorous data collection and standardization processes.
+
+The evolution of the age-adjusted mortality rate for breast cancer in Austria, Romania and Italy was analyzed. This rate is expressed in deaths per 100,000 persons, which will provide a standardized measure that will allow meaningful comparisons between different populations and time periods. Mortality rates were age-adjusted using the direct standardization method. This method uses a reference population (the world standard population) to calculate age-specific mortality rates, which eliminates differences in age structure between countries. This allows mortality rates to be compared more accurately, regardless of whether one population is younger or older than another.
+
+In this mathematical exploration, I will consider the following variables. The independent variable will be time, measured in years. This variable will allow me to assess changes in breast cancer mortality over the selected years (1969-2015). The dependent variable will be the age-adjusted mortality rate. As parameters, I selected the three countries mentioned above. The choice of countries was based on their diverse geographical, economic and health system characteristics.
+
+To facilitate interpretation and analysis, the data were tabulated and plotted using GeoGebra, a tool that allowed visualization of trends and patterns over time. This step was essential to identify possible correlations, anomalies or significant changes in mortality rates among the selected countries.
+
+To facilitate the analysis of the evolution of breast cancer mortality rates in Italy, Romania and Austria, the data have been organized in a table. The table for the period from 1969 to 1975 is presented below. The complete raw data table (1981-2015) has been included in Appendix A, where it can be consulted in detail. This decision was made to maintain the clarity and organization of the document.
+
+Table 1. Raw Data of Age-Adjusted Breast Cancer Mortality Rates (1969-2019).
+x = Year | y = Breast cancer deaths (100,000 people) 3s.f Italy | y = Breast cancer deaths (100,000 people) 3s.f Romania | y = Breast cancer deaths (100,000 people) 3s.f Austria
+1969 | 19.7 | 10.4 | 20.8
+1970 | 19.5 | 10.9 | 20.6
+1971 | 19.9 | 11.5 | 20.7
+1972 | 20.5 | 11.4 | 21.0
+1973 | 20.6 | 11.3 | 21.9
+1974 | 20.7 | 11.3 | 21.6
+1975 | 20.5 | 11.8 | 21.0
+
+In the table presented, the data are in 3 significant figures. This decision is based on the need to balance precision with clarity in the interpretation of the data. The sources consulted, such as Our World in Data, use this format to present statistical estimates, since a greater number of decimal places could imply a non-existent precision in the original data. In addition, the use of 3 significant figures facilitates visual comparison between countries and years, reducing visual noise and allowing us to focus on the main trends.
+
+This information was represented in a scatter plot, with the time elapsed since 1969 (in years) as the Y-axis and the number of breast cancer deaths per 100,000 people as the X-axis. This is represented in Figure 1.
+
+Figure 1: Evolution of breast cancer mortality rates in Italy, Romania and Austria since 1969.
+
+The graph shows that Italy experienced a decline in breast cancer mortality starting around 1994. This decline coincided with the implementation of national early detection programs, such as mammograms, and the advance in medical treatments, including hormone therapy and chemotherapy. In addition, awareness of the importance of early diagnosis began to grow. On the other hand, Romania recorded an increase in mortality in mid-1984, in a context marked by economic crisis and a deficient health system under the communist regime of Nicolae Ceaușescu. According to Gilberg (2019), this period was characterized by a strong centralization of power, scarcity of medical resources, lack of equipment for early diagnostics, and limited availability of modern treatments, which hindered adequate patient care. In the case of Austria, it shows a significant increase from the 1980s onwards, according to the graph. This increase coincides with factors such as population aging, higher rates of obesity and alcohol consumption, as well as improvements in case registration.
+
+---
+
+3. Functions to model the researched data
+
+The data were plotted in GeoGebra, a tool used for representing functions and other mathematical procedures. After testing different types of functions, it was concluded that the most appropriate for these cases were polynomials of degree 3 in the first graph and polynomials of degree 4 in the second graph.
+
+In the first graph, the data are modeled with polynomial functions of third degree, which provides a good fit to the data. This increase is especially noticeable in the purple curve, where greater accuracy in capturing the increasing trend is observed. The difference between the two approaches is that the fourth-degree polynomial allows greater flexibility to adapt to changes in the slope of the data, resulting in a more accurate fit.
+
+In this analysis, the functions i1(x) and i2(x) represent the data for Italy, r1(x) and r2(x) corresponds to the data for Romania, while a1(x) and a2(x) model the data for Austria. In addition, each country is represented by a specific color: blue for Italy, pink for Romania and purple for Austria.
+
+Working with polynomials of these degrees is especially useful in this type of graphs, as they allow modeling complex phenomena with nonlinear trends, such as the behavior of mortality rates or disease incidence over time. These models help to visualize patterns, predict future behavior and make decisions based on more realistic data.
+
+Figure 2. Evolution of breast cancer mortality rates in Italy, Romania and Austria since 1969 with polynomial function grade 3
+
+Figure 3. Evolution of breast cancer mortality rates in Italy, Romania and Austria since 1969 with polynomial function grade 4
+
+Data were rounded to 5 significant figures to ensure accuracy in calculations and representations. According to Khan Academy, the R^2 coefficient is a measure that indicates how well a model fits the data it represents. In this analysis, since the R^2 value was greater than 0.9 in all cases, it means that more than 90% of the variability in the data was explained by the models used. This demonstrates high accuracy in the mathematical models applied to the breast cancer mortality data in the three countries studied. Furthermore, the high R^2 values suggest that the polynomial functions of degree 3 and 4 effectively capture the underlying trends in the data, providing a reliable basis for analysis and prediction. However, it is important to keep in mind that, although a high R^2 indicates a good fit, it does not necessarily imply causality nor does it consider possible outliers or external factors that may influence the data.
+
+---
+
+4.1 Function Analysis.
+
+I make the calculation of intersections because it gives me a concrete tool to identify the years in which age-adjusted mortality rates in two countries coincided. This is key in my research because it helps me to look beyond general trends: it allows me to detect punctual moments of similarity that may reflect patterns in the evolution of mortality. By comparing these exact points, I can better analyze whether countries followed similar trajectories or whether there were significant differences. This comparison is not only based on the observation of graphs, but on calculated and verified data. The results of these intersections help me to support my analyses in a more rigorous way and to substantiate the recommendations I make at the end. In this way, the calculation is not just a mathematical step, but strengthens the understanding of changes in mortality rates and contributes directly to answering my research question.
+
+The calculation is performed in several steps: first, the two functions representing the mortality rate in the countries analyzed are defined. Then, these functions are equated to find the points where the rates coincide. Next, the equation is solved to obtain the value of x. Finally, this value is substituted into the original equation to obtain the y value. This procedure will allow me to identify the relationship between the countries and the years in which they had similar mortality rates. (All written procedures can be found in Appendix B).
+
+a2(x) = 0.000024228x^4 - 0.0021630x^3 + 0.047853x^2 - 0.10331x + 20.881
+r2(x) = 0.0000083976x^4 - 0.00088201x^3 + 0.024727x^2 + 0.048344x + 10.907
+
+To find the intersections, the two functions are equalized and the fourth degree equation is solved
+a2(x) = r2(x)
+0.000024228x^4 - 0.0021630x^3 + 0.047853x^2 - 0.10331x + 20.881 = 0.000083976x^4 ...
+... - 0.00088201x^3 + 0.024727x^2 + 0.048344x + 10.907
+
+Then
+(0.000024228 - 0.0000083976)x^4 + (-0.0021630 + 0.00088201)x^3 ...
+... + (0.047853 - 0.024727)x^2 + (-0.10331 - 0.048344)x + 20.881 - 10.907 = 0
+
+0.0000158304x^4 - 0.00128099x^3 + 0.023126x^2 - 0.151654x + 9.974 = 0
+
+The 4th degree polynomial equation is solved with the GDC as shown in figure 4.
+Figure 4. a) 4th degree polynomial equation in the GDC. b) Solution obtained with the GDC.
+
+The solutions obtained are
+x1 = 51.656 (3 d.p) x2 = 38.708 (3 d.p)
+
+To calculate the y -coordinates the values of x are evaluated in one of the functions.
+a2(x)=(51.656) = 0.000024228(51.656)^4 - 0.0021630(51.656)^3 + 0.047853(51.656)^2 ...
+- 0.10331(51.656) + 20.881 = 17.605
+a2(x)=(38.708) = 0.000024228(38.708)^4 - 0.0021630(38.708)^3 + 0.047853(38.708)^2 ...
+- 0.10331(38.708) + 20.881 = 17.526
+
+The intersections are shown in tables 2, 3, 4 and 5.
+
+Table 2. Results of intersections between Austria and Romania with polynomial function 4.
+Country | Function | x = (units of x)(3 d.p) y = (units of y)(3 d.p)
+Austria | a2(x) | (51.656, 17.605)
+Romania | r2(x) | (38.708, 17.526)
+
+Table 3. Results of intersections between Austria and Romania with polynomial function 3.
+Country | Function | x = (units of x)(3 d.p) y = (units of y)(3 d.p)
+Austria | a1(x) | (57.045, 13.174)
+Romania | r1(x) | (40.408, 17.685)
+| | (-10.632, 7.4824)
+
+Table 4. Results of the intersections between Italy and Romania with polynomial function 4.
+Country | Function | x = (units of x)(3 d.p) y = (units of y)(3 d.p)
+Italy | i2(x) | (48.410, 17.253)
+Romania | r2(x) | (38.882, 17.516)
+
+Table 5. Results of the intersections between Italy and Romania with polynomial function 3.
+Country | Function | x = (units of x)(3 d.p) y = (units of y)(3 d.p)
+Italy | i1(x) | (64.789, 8.4786)
+Romania | r1(x) | (39.961, 17.719)
+
+Verification of the results was obtained with GeoGebra in Figure 5.
+Figure 5. Intersection and critical points in breast cancer mortality rates in Austria and Romania (polynomial 4).
+
+The graphs and tables show that breast cancer mortality rates in Austria, Romania and Italy show important differences in their evolution.
+
+In the case of Austria and Romania, the rates intersect in the years (38.708, 51.656) indicating times when both countries had similar rates. However, Austria has managed to reduce its rates more effectively, possibly due to better health policies or access to advanced treatments. On the other hand, when comparing Italy and Romania, the intersections occur in the years (38.882, 48.410), showing that Italy has maintained a more stable trend and a more pronounced reduction in mortality rates.
+
+Overall, Austria and Italy have been more effective in reducing fatality rates, while Romania, although improved, still faces challenges. This analysis highlights the importance of learning from the successful strategies of other countries to strengthen health policies and reduce breast cancer deaths in the future.
+
+---
+
+4.2 Functions analysis with derivatives.
+
+I have decided to apply the calculation of maximums and minimums because it allows me to identify the exact points at which the breast cancer mortality rate reached its highest and lowest values in each of the countries analyzed. This type of calculation is essential for my study, as I am not only interested in observing the general trend, but also in understanding precisely when the most critical and favorable stages of this problem occurred in Austria, Romania and Italy.
+
+In addition, I am interested in whether my mathematical model is able to accurately explain the actual maximums and minimums observed in the data. That is, I want to verify whether the extremes predicted by my fitted function coincide with the highest and lowest points of actual mortality. This comparison is key to validate the reliability of the models used and to assess their ability to adequately represent reality.
+
+Knowing the year in which each country reached its maximum mortality may reveal critical moments in its health history, such as inefficient public policies, economic crises or deficiencies in access to treatment; while the minimums may coincide with the implementation of early detection programs, medical technological advances or improvements in the health system.
+
+To calculate the maximum, first the function has to be derived.
+i1(x) = 0.00011306x^3 - 0.017184x^2 + 0.4800x + 18.764
+i1'(x) = 0.000339x^2 - 0.03436x + 0.48000
+
+To calculate the maximum or minimum:
+i1'(x) = 0
+0.000339x^2 - 0.03436x + 0.48000 = 0
+x = [-b +/- sqrt(b^2 - 4ac)] / 2a
+
+This quadratic equation can be solved with the general form.
+x1 = -[(-0.03436) + sqrt((-0.03436)^2 - 4(0.000339)(0.48000))] / 2(0.000339)
+x1 = [0.03436 + sqrt(0.00118 - 0.00065)] / 0.000678
+x1 = [0.03436 + sqrt(0.00053)] / 0.000678
+x1 = [0.03436 + 0.02302] / 0.000678
+x1 = 84.593 (5 s.f.)
+
+To find out if it is a maximum or a minimum, the second derivative must be calculated, and evaluate the coordinates obtained.
+i1''(x) = 0.000678x - 0.03436
+i1''(84.593) = 0.000678(84.593) - 0.03436
+i1''(84.593) = 0.0229
+
+Since: 0.0229 > 0, it is a minimum
+
+The second value will be calculated with the same process
+x2 = -[(-0.03436) + sqrt((-0.03436)^2 - 4(0.000339)(0.48000))] / 2(0.000339)
+x2 = [0.03436 - sqrt(0.00118 - 0.00065)] / 0.000678
+x2 = [0.03436 - sqrt(0.00053)] / 0.000678
+x2 = [0.03436 - 8.02302] / 0.000678
+x2 = 16.725 (5 s.f.)
+
+To find out if it is a maximum or a minimum:
+i1''(x) = 0.000678x - 0.03436
+i1''(16.729) = 0.000678(16.729) - 0.03436
+i1''(16.729) = -0.0230
+
+Since: -0.0230 < 0, it is a maximum
+Finally to find the y coordinate, the values of x must be evaluated:
+i1(84.593) = 0.00011306(84.593)^3 - 0.017184(84.593)^2 + 0.48000(84.593) + ...
++ 18.764 = 4.8445
+i1(16.729) = 0.00011306(16.729)^3 - 0.017184(16.729)^2 + 0.48000(16.729) + ...
++ 18.764 = 22.514
+
+The solutions obtained are:
+(16.729, 22.514)
+(84.593, 4.8445)
+
+The rest of the calculations for the other functions are shown in the appendix C. All the results are shown in table 6.
+
+Table 6. Coordinate results for maximum and minimum in polynomial function degree 3 and 4.
+Country | Function | Maximum and minimum of the polynomial function degree 3. x = (units of x) y = (units of y)
+Austria | a1(x) | Maximum: (15.760, 24.266) | Minimum: (59.977, 13.033)
+Italy | i1(x) | Maximum: (16.729, 22.514) | Minimum: (84.593, 4.8445)
+Romania | r1(x) | Maximum: (36.250, 17.847) | Minimum: (not taken into account for my study)
+Country | Function | Maximum and minimum of the polynomial function degree 4. x = (units of x) y = (units of y)
+Austria | a2(x) | Maximum: (19.801, 24.530) | Minimum: (1.1707, 20.822) (45.984, 15.332)
+Italy | i2(x) | Maximum: (19.504, 22.827) | Minimum: (0.69077, 19.842) (44.470, 16.476)
+Romania | r2(x) | Maximum: (33.395, 17.694) | Minimum: (46.308, 17.202) (not taken into account for my study)
+
+Figure 6. Coordinates for the maximum and minimum verification with GeoGebra.
+
+When observing the results obtained in the calculations of maximums and minimums, I noticed that only in the case of Romania do coordinates with negative values appear in the axis x. Given that in my study the axis x represents the number of years since 1969, these negative values cannot be interpreted as real years, since they would imply dates prior to 1969, outside the range of my data. However, the fact that this situation only occurs in polynomial models applied to Romania led me to reflect on two important aspects. On the one hand, from a mathematical perspective, this happens because high degree polynomials, such as those used in this study, tend to extend beyond the useful domain when adjusting complex curves. This does not mean that negative values are errors, but rather that they mark the need to restrict the domain when interpreting the results. On the other hand, from a contextual perspective, this behavior could also be related to the lack of stability and consistency in the actual data for Romania, which reflect a more irregular evolution in breast cancer mortality, possibly due to less effective health policies or greater structural inequalities during much of the period. This double reading allowed me to understand that mathematics, although exact, requires critical interpretation in order not to draw erroneous conclusions, and that the behavior of a function can also reflect deeper realities of the country it represents. Therefore, this result is not an error to be ignored, but an opportunity to question the models, adjust the analysis and better understand the reality of the data I study.
+
+---
+
+5. Conclusions
+
+In section 4.1, the intersection analysis made it possible to identify the years in which two countries had similar breast cancer mortality rates. For example, Austria and Romania coincided in the years (38,708, 51,656), while Italy and Romania coincided in (38,882, 48,410). These crossings revealed important differences in the evolution of rates and reflected changes in health policies.
+
+In section 4.2, the peaks and troughs of the functions were analyzed for each country. A maximum was identified in Romania at (36,250, 17,847), associated with deficiencies in the health system prior to its entry into the EU. On the other hand, Italy presented a minimum in (84,593, 4,8445), related to the Balduzzi Decree and higher mammography coverage. These extremes marked critical moments that helped to understand the impacts of political and social interventions.
+
+One of the main limitations of the analysis was the use of polynomial functions adjusted to the data, which did not always accurately reflect real year-to-year changes. In addition, the original data may have been biased by underreporting in certain regions, especially in countries such as Romania, where access to medical services was unequal. Also, the intersections alone did not explain the causes of change, but only indicated when they occurred.
+
+In some cases, there were negative numbers on the x-axis, which do not represent real years within the period analyzed. However, this was not an error as such, but a natural consequence of the behavior of high degree polynomial functions, which tend to extend outside the useful domain when fitting complex curves. Therefore, it was necessary to interpret the results within the real context and restrict the domain to the relevant interval.
+
+Another difficulty was that, on some occasions, the official pages did not show complete or updated data, so it was necessary to perform additional calculations to estimate certain values and thus be able to continue with the analysis in a consistent manner.
+
+For future research, more countries could have been included and incidence rates, not only mortality rates, could have been compared in order to obtain a more complete picture. Also other types of functions, such as exponential or logarithmic, could be used, as they could provide a more realistic and stable fit when representing progressive growth or decline phenomena, as commonly occurs in public health data. It would also have been useful to incorporate additional variables such as investment in health, access to medical technology or early detection rates.
+
+If someone else had attempted to explore the same topic, it would have been recommended to work with more recent databases to obtain more current and accurate conclusions.
+
+---
+
+References:
+- Homepage | ECIS - European Cancer Information System. (s. f.-b). https://ecis.jrc.ec.europa.eu/
+- Kim, J., Harper, A., McCormack, V. et al. Global patterns and trends in breast cancer incidence and mortality across 185 countries. Nat Med (2025). https://doi.org/10.1038/s41591-025-03502-3
+- The International Agency for Research on Cancer (IARC). (s. f.). Global Cancer Observatory. https://gco.iarc.fr/en
+- Susan G. Komen®. (2025b, febrero 18). Breast Cancer Foundation | Susan G. Komen®. https://www.komen.org/
+- Gilberg, T. (2019). Nationalism and Communism in Romania. En Routledge eBooks. https://doi.org/10.4324/9780429044182
+- Khan Academy. (s. f.). https://www.khanacademy.org/math/ap-statistics/bivariate-data-ap/assessing-fit-least-squares-regression/v/r-squared-or-coefficient-of-determination
+
+---

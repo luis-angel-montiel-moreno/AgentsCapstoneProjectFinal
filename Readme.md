@@ -1,5 +1,17 @@
 # AgentsCapstoneProject
 
+## Category 1: The Pitch (Problem, Solution, Value)
+
+### Problem: 
+When bachelor students develop their thesis, they need to fulfill a robust rubric at several stages of the process. This rubric is a set of criteria that evaluate the student's work by professors. These reviews are time consuming and require a lot of work from professors. 
+
+### Solution: 
+We provide a agentic system that helps professors to review students' work automatically, by providing as input the rubric criterias and the student's work. This system uses agentic AI to provide a feedback to the professor, including a score and a list of actionables that the student can take to improve their work. Finally, the system provides a final score based on the rubric criteria and a summary final feedback report.
+
+### Value: 
+This system provides a time saving solution for professors, by automating the review process and providing a final score and a summary final feedback report. It also provides a list of actionables that the student can take to improve their work. 
+
+
 ## Setup and Installation
 
 ### Prerequisites
