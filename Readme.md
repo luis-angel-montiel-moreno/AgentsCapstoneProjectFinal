@@ -85,7 +85,7 @@ We provide an advanced agentic AI system that automates the comprehensive review
 
 #### Key Features
 
-- **Automated Document Analysis**: Processes complete student documents, understanding context and extracting relevant information for each rubric criterion
+- **Automated Document Analysis**: Processes complete student documents in PDF or text format, understanding context and extracting relevant information for each rubric criterion. PDF support enables analysis of mathematical formulas, diagrams, and images, providing comprehensive evaluation capabilities
 - **Parallel Multi-Criterion Evaluation**: Simultaneously evaluates all five rubric criteria, reducing total review time by up to 80% compared to sequential processing
 - **Rubric-Grounded Feedback**: All evaluations reference actual rubric criteria retrieved through semantic search, ensuring accuracy and alignment with institutional standards
 - **Structured Scoring**: Provides numerical scores for each criterion with detailed justifications based on rubric standards
@@ -428,8 +428,8 @@ The system follows Clean Architecture's layered approach:
    - Compose root sequential agent
 
 2. **Execution Phase**:
-   - Load student document
-   - Construct task prompt
+   - Load student document (PDF or text format, automatically detected)
+   - Construct task prompt with document content
    - Execute parallel reviewer team (all agents run concurrently)
    - Execute aggregator agent (synthesizes all feedback)
    - Extract feedback from all agents
@@ -517,9 +517,11 @@ The system follows Clean Architecture's layered approach:
 
 The system requires two primary inputs to perform automated thesis document review:
 
-#### 1. Student Document (`document.txt`)
-- **Format**: Plain text file (`.txt`) encoded in UTF-8
-- **Location**: `./resources/input/document.txt`
+#### 1. Student Document
+- **Supported Formats**: 
+  - **PDF files** (`.pdf`): Recommended format for comprehensive analysis
+  - **Text files** (`.txt`): Plain text files encoded in UTF-8
+- **Location**: `./resources/input/` (configured via `ProjectConfig.input_sample_document_to_review`)
 - **Content**: Complete student thesis document containing:
   - Introduction and research context
   - Methodology and data collection
@@ -527,11 +529,18 @@ The system requires two primary inputs to perform automated thesis document revi
   - Personal engagement and reflection
   - Conclusions and findings
 - **Purpose**: The document serves as the primary content to be evaluated against rubric criteria
+- **PDF Format Advantages**:
+  - **Mathematical Formulas**: PDF format preserves complex mathematical notation and equations, enabling accurate evaluation of mathematical communication (Criterion B) and use of mathematics (Criterion E)
+  - **Diagrams and Images**: Supports analysis of visual elements such as graphs, charts, and diagrams that are essential for comprehensive thesis evaluation
+  - **Formatting Preservation**: Maintains document structure, tables, and formatting that are important for presentation evaluation (Criterion A)
+- **Text Format**:
+  - Suitable for plain text documents without complex formatting
+  - Supports mathematical notation in text form
+  - Typical length: 10-50 pages when converted to text
 - **Requirements**: 
   - Should be a complete, formatted thesis document
-  - Must be readable text (not scanned images)
+  - PDF files should contain readable text (not scanned images without OCR)
   - Can contain mathematical notation, tables, and structured content
-  - Typical length: 10-50 pages when converted to text
 
 #### 2. Rubric Document (`rubrics.pdf`)
 - **Format**: PDF file (`.pdf`)
@@ -558,9 +567,12 @@ The system requires two primary inputs to perform automated thesis document revi
 - **Google Cloud Authentication**: Application Default Credentials (ADC) via `gcloud auth application-default login`
 
 #### Input Processing Flow
-1. **Document Loading**: Student document is read as plain text and passed to the agent system
+1. **Document Loading**: 
+   - PDF files are loaded as binary data and passed to the agent system with MIME type `application/pdf`, enabling analysis of mathematical formulas, diagrams, and images
+   - Text files are read as UTF-8 encoded plain text and passed to the agent system
+   - File format is automatically detected based on file extension
 2. **Rubric Ingestion**: Rubric PDF is uploaded to Vertex AI RAG corpus and indexed for semantic search
-3. **Task Prompt Construction**: System combines student document with task instructions to create evaluation prompt
+3. **Task Prompt Construction**: System combines student document (PDF or text) with task instructions to create evaluation prompt
 4. **Agent Distribution**: All reviewer agents receive the document and access to RAG tool for rubric retrieval
 
 ---

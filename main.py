@@ -8,6 +8,10 @@ scores, and actionables ("Value").
 Main Entry Point:
 This is the main orchestration script that initializes and executes the agentic
 feedback system. It coordinates the workflow from document input to final report generation.
+
+The system supports both PDF and text file formats for student documents:
+- PDF files: Enables analysis of mathematical formulas, diagrams, and images
+- Text files: Supports plain text documents with UTF-8 encoding
 """
 import os
 import asyncio
@@ -49,11 +53,15 @@ async def run_feedback_system():
     
     Workflow:
     1. Creates an InMemoryRunner with the root agent and logging plugin
-    2. Loads the student document to be reviewed
+    2. Loads the student document to be reviewed (supports PDF and text formats)
     3. Constructs the task prompt for the agent system
     4. Executes the agent workflow (parallel reviewers -> aggregator)
     5. Extracts feedback from all agents
     6. Writes consolidated feedback report to output file
+    
+    Document Format Support:
+    - PDF files: Enables analysis of mathematical formulas, diagrams, and images
+    - Text files: Supports plain text documents with UTF-8 encoding
     
     Returns:
         None (writes output to file)
@@ -91,13 +99,15 @@ async def run_feedback_system():
         parts = []
         
         if file_extension == '.pdf':
+            # PDF format enables analysis of mathematical formulas, diagrams, and images
+            # This is particularly valuable for thesis documents with complex mathematical content
             with open(file_path, "rb") as f:
                 pdf_data = f.read()
             pdf_part = types.Part.from_bytes(data=pdf_data, mime_type="application/pdf")
             parts.append(pdf_part)
             print(f"Loaded PDF file: {file_path}")
         else:
-            # Default to text file reading
+            # Default to text file reading for plain text documents
             with open(file_path, 'r', encoding='utf-8') as f:
                 text_content = f.read()
             parts.append(types.Part(text=text_content))
