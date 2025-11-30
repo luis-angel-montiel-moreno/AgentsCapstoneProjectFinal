@@ -1,5 +1,62 @@
 # AgentsCapstoneProject
 
+## Introduction
+
+This project has been developed for the **Agents Intensive - Capstone Project**, which aims to put course learnings into action by building an agentic system that solves a real-world problem or improves everyday productivity.
+
+**Competition Link**: [Agents Intensive Capstone Project](https://www.kaggle.com/competitions/agents-intensive-capstone-project)
+
+---
+
+### Submission Details
+
+#### Title
+**Intelligent Thesis Reviewer: A Multi-Agent System for Automated Academic Evaluation**
+
+#### Subtitle
+*Leveraging Parallel AI Agents and RAG for Comprehensive Rubric-Based Student Document Review*
+
+#### Track
+**Agents for Good**
+
+Agents that tackle problems in education, healthcare, or sustainability.
+
+#### Media Gallery
+
+**YouTube Video URL**: *[To be added]*
+
+---
+
+### Team
+
+This project has been collaboratively developed by:
+
+**Japhet Hernandez Vaquero**
+- GitHub: [@JaphetHerzVaq](https://github.com/JaphetHerzVaq)
+- Email: Japhet.hernandezv@gmail.com
+
+**Luis Angel Montiel Moreno**
+- GitHub: [@luis-angel-montiel-moreno](https://github.com/luis-angel-montiel-moreno)
+- Email: luis.angel.montielm@gmail.com
+
+---
+
+### Included Features
+
+#### Multi-Agent System
+- ✅ **Agent powered by LLM**: All agents utilize Google's Gemini 2.5 Flash Lite model
+- ✅ **Parallel agents**: Five specialized reviewer agents execute concurrently for optimal performance
+- ✅ **Sequential agents**: Root sequential agent orchestrates parallel review → aggregation workflow
+
+#### Tools & Infrastructure
+- ✅ **Custom RAG Tool**: Vertex AI RAG retrieval tool for rubric-based knowledge access
+- ✅ **Semantic Search**: Vector database corpus with text-embedding-005 for rubric retrieval
+
+#### Observability
+- ✅ **Logging**: Comprehensive logging via Google ADK LoggingPlugin
+- ✅ **Tracing**: Full execution trace of agent workflow and state transitions
+
+
 ## Category 1: The Pitch (Problem, Solution, Value)
 
 ### Problem: 
