@@ -14,6 +14,7 @@ from google.adk.runners import InMemoryRunner
 from google.genai import types
 from google.adk.plugins.logging_plugin import LoggingPlugin
 from t_lib.t_agentic_lib.t_agent_controller import ReviewerAgentController
+from t_lib.t_agentic_lib.t_inductive_agent_model.t_reviewer_agent_inductive import InductiveReviewerAgents
 from t_lib.t_project.t_config import ProjectConfig
 
 logging.basicConfig(level=logging.DEBUG)
@@ -24,16 +25,6 @@ try:
     print("Google API Key Complete")
 except KeyError: 
     print("Authentication Error: please create a .env file with 'GOOGLE_API_KEY")
-
-
-# To handle failures like rate limits or temporary unavailability of the model, we can use a retry mechanism.
-retry_configuration = types.HttpRetryOptions(
-    attempts = 5,
-    exp_base = 7,
-    initial_delay = 1,
-    http_status_codes = [429, 500, 502, 503, 504]
-)
-
 
 ###############################################################
 ReviewerAgentController.set_root_reviewer_system_agent()
@@ -73,16 +64,24 @@ async def run_feedback_system():
         TASK_PROMPT
     )
     print("******RESPONSE*******\n", response, "******RESPONSE*******\n")
+
+    def get_output_key_response_value(output_key, response):
+        for event in response:
+            if (hasattr(event, 'actions') and
+                    event.actions is not None and
+                    hasattr(event.actions, 'state_delta') and
+                    event.actions.state_delta is not None and
+                    isinstance(event.actions.state_delta, dict) and
+                    output_key in event.actions.state_delta):
+                return event.actions.state_delta[output_key]
+        return ""
+
     # Extract final_feedback values from elements where state_delta contains 'final_feedback'
     final_feedback_values = []
-    for event in response:
-        if (hasattr(event, 'actions') and 
-            event.actions is not None and 
-            hasattr(event.actions, 'state_delta') and 
-            event.actions.state_delta is not None and 
-            isinstance(event.actions.state_delta, dict) and 
-            'final_feedback' in event.actions.state_delta):
-            final_feedback_values.append(event.actions.state_delta['final_feedback'])
+    for agent in InductiveReviewerAgents.reviewer_agents:
+        final_feedback_values.append(get_output_key_response_value(agent.output_key, response))
+
+    final_feedback_values.append(get_output_key_response_value('final_feedback', response))
 
     print("Final report: ", final_feedback_values)
     # Print the extracted values
@@ -100,39 +99,8 @@ async def run_feedback_system():
     with open(ProjectConfig.consolidated_filename, "w", encoding="utf-8") as f:
         f.write("Consolidated feedback report\n\n")
         f.write("---")
-        
         f.write("\n## I. Detailed feedback per criteria\n\n")
         f.write(final_feedback_values[0])
-        """
-        feedback_keys = [
-            "Presentation_feedback",
-            "Mathematical_communication_feedback",
-            "Personal_engagement_feedback",
-            "Reflection_feedback",
-            "Use_of_Mathematics_feedback",
-        ]
-        
-        key_to_title = {
-            "Presentation_feedback": "A. Presentation",
-            "Mathematical_communication_feedback": "B. Mathematical communication",
-            "Personal_engagement_feedback": "C. Personal Engagement",
-            "Reflection_feedback": "D. Reflection",
-            "Use_of_Mathematics_feedback": "E. Use of Mathematics",
-        }
-
-        for key in feedback_keys:
-            if key in all_outputs:
-                f.write(f"### Criteria {key_to_title[key]}\n\n")
-                f.write(all_outputs[key].strip())
-                f.write("\n\n---\n") # Separador entre criterios
-            else:
-                f.write(f"### Criteria {key_to_title[key]} (not found)\n\n")
-
-        # 2. WRITE FINAL REPORT (AggregatorAgent)
-        f.write("\n## ✨ II. Final consolidated feedback\n\n")
-        f.write(final_report_text.strip())
-        f.write("\n")
-        """
     # -----------------------------------------------
     # MOSTRAR Y CONFIRMAR
     print(f"\n--- Final Feedback (Aggregator Agent) ---")
