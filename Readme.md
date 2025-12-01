@@ -6,6 +6,8 @@ This project has been developed for the **Agents Intensive - Capstone Project**,
 
 **Competition Link**: [Agents Intensive Capstone Project](https://www.kaggle.com/competitions/agents-intensive-capstone-project)
 
+**GitHub Repo**: [Project Github Repo](https://github.com/JaphetHerzVaq/AgentsCapstoneProject/tree/main)
+
 ---
 
 ### Submission Details
