@@ -720,115 +720,145 @@ You should see the following packages listed:
 
 ### Step 5: Configure Google Cloud Credentials
 
-This section explains how to configure your Google Cloud environment so the system can authenticate with Vertex AI, create the RAG corpus, and run all agents successfully.
+This section explains how to configure your Google Cloud environment so
+the system can authenticate with Vertex AI, create the RAG corpus, and
+run all agents successfully.
+
+------------------------------------------------------------------------
 
 #### 1. Create a Google Cloud Project
-A. Create the project using the Google Cloud Console (UI)
 
-a. Go to: https://console.cloud.google.com/
+**A. Create the project using the Google Cloud Console (UI)**
 
-b. Click the project selector at the top-left.
-c. Click “New Project”.
-d. Fill in:
+-   Go to: https://console.cloud.google.com/
+-   Click the project selector at the top-left.
+-   Click **"New Project"**.
+-   Fill in:
+    -   **Project name** (e.g., `agents-capstone-project`)
+    -   **Organization** (if applicable)
+    -   **Location**
+-   Click **Create**.
+-   Ensure the new project is selected as the active project.
 
-Project name (e.g., agents-capstone-project)
-
-Organization (if applicable)
-
-Location
-
-e. Click Create.
-f. Ensure the new project is selected as the active project.
+------------------------------------------------------------------------
 
 #### 2. Install the Google Cloud SDK
 
 Install the Google Cloud SDK for your operating system:
 
-https://cloud.google.com/sdk/docs/install
+-   https://cloud.google.com/sdk/docs/install
+
+------------------------------------------------------------------------
 
 #### 3. Initialize gcloud and Select Your Project
 
-* Run:
+Run:
 
+``` bash
 gcloud init
+```
 
+Choose:
 
-* Choose:
+-   Your Google account\
+-   The project you created\
+-   A default region (optional)
 
-- Your Google account
-- The project you created
-- A default region (optional)
+To explicitly set the project:
 
-* To explicitly set the project:
-
+``` bash
 gcloud config set project YOUR_PROJECT_ID
+```
+
+------------------------------------------------------------------------
 
 #### 4. Enable Required Google Cloud APIs
 
-* Vertex AI and the RAG backend require several APIs.
+Vertex AI and the RAG backend require several APIs.
 
-A. Enable APIs automatically via CLI (recommended)
-gcloud services enable \
-    aiplatform.googleapis.com \
-    cloudresourcemanager.googleapis.com \
-    storage.googleapis.com
+------------------------------------------------------------------------
 
-B. Enable APIs manually via the Google Cloud Console (UI)
+**A. Enable APIs automatically via CLI (recommended)**
 
-a. Go to:
-Console → APIs & Services → Enabled APIs & Services
+``` bash
+gcloud services enable     aiplatform.googleapis.com     cloudresourcemanager.googleapis.com     storage.googleapis.com
+```
 
-b. Click “Enable APIs and Services”.
+------------------------------------------------------------------------
 
-c. Search for and enable:
+**B. Enable APIs manually via the Google Cloud Console (UI)**
 
-* Vertex AI API (aiplatform.googleapis.com)
-* Cloud Resource Manager API (cloudresourcemanager.googleapis.com)
-* Cloud Storage API (storage.googleapis.com)
+-   Go to:\
+    **Console → APIs & Services → Enabled APIs & Services**
+-   Click **"Enable APIs and Services"**.
+-   Search for and enable:
+    -   **Vertex AI API** (`aiplatform.googleapis.com`)
+    -   **Cloud Resource Manager API**
+        (`cloudresourcemanager.googleapis.com`)
+    -   **Cloud Storage API** (`storage.googleapis.com`)
+-   Confirm all appear under **Enabled APIs**.
 
-d. Confirm all appear under Enabled APIs.
+------------------------------------------------------------------------
 
 #### 5. Authenticate (Application Default Credentials)
 
-* Run:
+Run:
 
+``` bash
 gcloud auth application-default login
+```
 
+A browser window will open → sign in → grant access.
 
-*A browser window will open → sign in → grant access. Verify:
+Verify:
 
+``` bash
 gcloud auth list
 gcloud auth application-default print-access-token
+```
+
+------------------------------------------------------------------------
 
 #### 6. Match Your Google Cloud Settings with Project Files
-##### A. t_config.py
 
-* The main configuration field is:
+##### A. `t_config.py`
 
+The main configuration field is:
+
+``` python
 project_id = "agents-capstone-project"
+```
 
+Replace this value with your actual Project ID, for example:
 
-* Replace the value with your actual Project ID, e.g.:
-
+``` python
 project_id = "my-project-123456"
+```
 
+This **must match** the project created in Step 1.
 
-* This must match the project created in Step 1.
+------------------------------------------------------------------------
 
-B. t_retrieval_rag_tool.py
+##### B. `t_retrieval_rag_tool.py`
 
-*Vertex AI is initialized here:
+Vertex AI is initialized here:
 
+``` python
 vertexai.init(project=ProjectConfig.project_id, location="us-east1")
 client = genai.Client(vertexai=True, project=ProjectConfig.project_id, location="us")
+```
 
 ##### Important Notes:
 
-* The project ID must come from ProjectConfig.
-* The region must be a region supported by Vertex AI and Vertex RAG.
-* You may update the region depending on your location or your organization’s requirements:
+-   The project ID must come from `ProjectConfig`.
+-   The region must be supported by **Vertex AI** and **Vertex RAG**.
+-   You may update the region depending on your location or your
+    organization's requirements:
 
+``` python
 vertexai.init(project=ProjectConfig.project_id, location="YOUR_REGION")
+```
+
 
 ## Deactivating the Virtual Environment
 
