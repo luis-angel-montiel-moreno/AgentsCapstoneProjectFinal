@@ -137,7 +137,7 @@ async def run_feedback_system():
         
     print("******RESPONSE RECEIVED*******\n")
 
-    def get_output_key_response_value(output_key, response):
+    def get_output_key_response_value(output_key, response, output_title):
         """
         Helper function to extract output values from agent response events.
         
@@ -159,17 +159,17 @@ async def run_feedback_system():
                     event.actions.state_delta is not None and
                     isinstance(event.actions.state_delta, dict) and
                     output_key in event.actions.state_delta):
-                return event.actions.state_delta[output_key]
+                return "# " + output_title + "\n\n"+   event.actions.state_delta[output_key]
         return ""
 
     # Extract feedback from all individual reviewer agents
     # Each agent provides feedback for one rubric criterion (A, B, C, D, or E)
     final_feedback_values = []
     for agent in InductiveReviewerAgents.reviewer_agents:
-        final_feedback_values.append(get_output_key_response_value(agent.output_key, response))
+        final_feedback_values.append(get_output_key_response_value(agent.output_key, response, agent.output_title))
 
     # Extract the final consolidated feedback from the aggregator agent
-    final_feedback_values.append(get_output_key_response_value('final_feedback', response))
+    final_feedback_values.append(get_output_key_response_value('final_feedback', response, "Final Feedback"))
 
     print("Final report: ", final_feedback_values)
     # Display all extracted feedback values for verification
@@ -184,13 +184,16 @@ async def run_feedback_system():
     # Write the consolidated feedback report to the output file
     # This creates a markdown file with all feedback organized by criteria
     with open(ProjectConfig.consolidated_filename, "w", encoding="utf-8") as f:
-        f.write("Consolidated feedback report\n\n")
+        f.write("# Consolidated feedback report\n\n")
         f.write("---")
-        f.write("\n## I. Detailed feedback per criteria\n\n")
-        f.write(final_feedback_values[0])
-    
+        for feedback in final_feedback_values:
+            f.write("\n")
+            f.write(feedback)
+            f.write("\n")
+            f.write("---")
+            f.write("\n")
+
     # Display completion message with output file location
-    print(f"\n--- Final Feedback (Aggregator Agent) ---")
     print(f"\n Complete report (individual and consolidated) saved in {ProjectConfig.consolidated_filename}")
 
 

@@ -26,7 +26,7 @@ class ProjectConfig:
     project_id = "agents-capstone-project"
     
     # Path to the student document that will be reviewed by the agentic system
-    input_sample_document_to_review = r"./resources/input/document2.pdf"
+    input_sample_document_to_review = r"./resources/input/document1.pdf"
     
     # Path to the rubric PDF file that will be ingested into the RAG corpus
     # This rubric defines the criteria (A, B, C, D, E) used for evaluation
