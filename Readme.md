@@ -441,26 +441,26 @@ The system follows Clean Architecture's layered approach:
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
-│              Application/Controller Layer                │
+│              Application/Controller Layer               │
 │        (ReviewerAgentController)                        │
 │  - Workflow orchestration                               │
 │  - Depends on domain abstractions                       │
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
-│                  Domain/Agent Layer                      │
-│  (ReviewerAgent, InductiveReviewerAgents)              │
+│                  Domain/Agent Layer                     │
+│  (ReviewerAgent, InductiveReviewerAgents)               │
 │  - Core business logic                                  │
 │  - Agent definitions and behaviors                      │
 │  - No infrastructure dependencies                       │
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
-│              Infrastructure Layer                        │
-│  (RetrievalRagTool, ProjectConfig)                     │
-│  - External services (Vertex AI, RAG)                  │
-│  - File system access                                  │
-│  - Configuration management                            │
+│              Infrastructure Layer                       │
+│  (RetrievalRagTool, ProjectConfig)                      │
+│  - External services (Vertex AI, RAG)                   │
+│  - File system access                                   │
+│  - Configuration management                             │
 └─────────────────────────────────────────────────────────┘
 ```
 
